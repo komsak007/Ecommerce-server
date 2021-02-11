@@ -16,13 +16,13 @@ exports.list = async (req, res) =>
 
 exports.read = async (req, res) => {
   let sub = await Sub.findOne({ slug: req.params.slug }).exec();
-  // res.json(sub);
-  const product = await Product.find({subs: sub})
+  const products = await Product.find({ subs: sub })
     .populate('category')
     .exec()
+
   res.json({
     sub,
-    product
+    products
   })
 };
 
